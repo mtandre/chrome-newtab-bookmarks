@@ -1,23 +1,29 @@
 'use strict';
 
+const ignoredFolders = new Set(['Other Bookmarks', '']);
+
 function main() {
     const list = document.querySelector('.bookmarks');
 
     // get all bookmarks
     chrome.bookmarks.getTree(tree => {
-        let bookmarks = getBookmarks(tree);
+        const bookmarks = getBookmarks(tree);
         bookmarks.sort(aToZ);
         bookmarks.forEach(bookmark => render(list, bookmark));
     });
 }
 
 // flatten nested bookmark tree
-function getBookmarks(array) {
+function getBookmarks(array, folder = '') {
     var result = [];
     array.forEach(a => {
         if (a.children && a.children.length > 0) {
-            result = result.concat(getBookmarks(a.children));
+            result = result.concat(getBookmarks(a.children, a.title));
         } else {
+            // add folder name as prefix if user-defined folder
+            if (!ignoredFolders.has(folder)) {
+                a.title = `${folder}/${a.title}`;
+            }
             result.push(a);
         }
     });
