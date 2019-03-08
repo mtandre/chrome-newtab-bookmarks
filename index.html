@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>🔥new tab + bookmarks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="main.js"></script>
+  <style>
+    body { font-family: monospace; overflow-x: auto; overflow-y: hidden; }
+    ul { display: flex; flex-direction: column; flex-wrap: wrap; height: 100vh; list-style: none; margin-left: 0; padding-left: 0; }
+    li { font-size: 12px; line-height: 1.6; padding-left: 1em; padding-right: 2em; text-indent: -1em; width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    li:before { content: "📍"; font-size: 8px; padding-right: 1em; }
+    a { text-decoration: none; color: slateblue; }
+    a:hover { text-decoration: underline; }
+   </style>
+</head>
+<body>
+    <ul class="bookmarks"></ul>
+</body>
+</html>
